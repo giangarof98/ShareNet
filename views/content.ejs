@@ -1,0 +1,86 @@
+<%- include('./layout/header')%>
+
+<style>
+
+    main{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20PX;
+    }
+
+    #container{
+        margin-top: 30px;
+        
+    }
+
+    #create{
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        padding: 10px;
+        margin-top: 10px;
+        font-weight: bolder;
+        letter-spacing: 1px;
+        background-color: green;
+    }
+
+    #ul{
+        padding: 0;  
+    }
+    
+    #li{
+        margin-bottom: 20px;
+        padding: 20px;
+        border: silver 2px solid;
+        background-color: rgb(185, 212, 248);
+    }
+
+    #p1, #p2{
+        margin-bottom: 10px;
+        font-weight: bolder;
+    }
+
+    #more{
+        margin-top: 10px;
+        font-weight: bold;
+        color: green;
+    }
+
+    #success{
+        color: green;
+        text-align: center;
+    }
+    #error{
+        margin-top: 1rem;
+        color: red;
+        text-align: center;
+    }
+
+</style>
+
+<main>
+    <h1>Welcome, <%= currentUser.username %></h1>
+
+    <div id="container">
+        <p id="success"><%- success %></p>
+        <p id="error"><%- error %></p>
+        <div id="ul">
+            <% for (let content of contents) {%>
+                <div id="li">
+                    <h2 id="p1"><%= content.title %></h2>
+                    <h3 id="p2"><%=content.description%></h3>
+                    <p>Likes: <%= content.likes.length%></p>
+                    <%for (let img of content.images) {%>
+                    <img src="<%= img.url %>" width="300px" alt=""> <br>
+                    <% } %>
+                    <p id="more"><a href="/content/<%= content._id %>">See more</a></p>
+                </div>
+            <% }%>
+        </div>
+    </div>
+
+</main>
+
+<%- include('./layout/footer')%>
+
+    

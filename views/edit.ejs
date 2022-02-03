@@ -1,0 +1,83 @@
+<%- include('./layout/header')%>
+
+<style>
+    main{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20PX;
+    }
+    
+    form{
+        margin-top: 20px;
+        padding: 20px;
+        text-align: center;
+        background-color: rgb(185, 212, 248);
+        border-radius: 25px;
+    }
+    form div{
+        padding: 10px;
+        text-align: center;
+    }
+
+    .invalid{
+        color: red;
+
+        letter-spacing: 1px;
+    }
+
+    .success{
+        color: green;
+        letter-spacing: 1px;
+    }
+
+    button{
+        background-color: green;
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 15px;
+    }
+
+    #btn{
+        margin-top: 2rem;
+        padding: 10px;
+        border-radius: 15px;
+        color: #fff;
+        background-color:royalblue;
+    }
+
+</style>
+
+<main>
+    <h1>Edit Publication</h1>
+    <form action="/content/<%=content._id%>?_method=PUT" method="POST" novalidate id="form" enctype="multipart/form-data">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="content[title]" value="<%=content.title%>" required> <br>
+            <small id="small"></small>
+        </div>
+        <div>
+            <input type="file" name="image" id="image" multiple>
+
+            <!-- <label for="image">Image</label>
+            <input type="text" id="image" name="content[image]" value="<%=content.image%>" required> <br>
+            <small id="small"></small> -->
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" id="description" name="content[description]" value="<%=content.description%>" required> <br>
+            <small id="small"></small>
+        </div>
+        <button>Update Post</button>
+    </form>
+    
+    <div id="btn">
+        <a href="/content/<%= content._id%>">Go back</a>
+    </div>
+</main>
+
+
+<%- include('./layout/footer')%>
+
+    

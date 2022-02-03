@@ -1,0 +1,62 @@
+<%- include('./layout/header')%>
+<style>
+body{
+    background-image: url('https://images.unsplash.com/photo-1643379840002-574002fbbd0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+main{
+    padding: 20px;
+    background-color: rgba(218, 216, 214, 0.295);
+    width: 70%;
+}
+
+#btn{
+    color: #fff;
+    background-color:blue;
+    padding: 10px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    border-radius: 18px;
+    border-color: black;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 25px;
+}
+
+#division-one{
+    text-align: center;
+}
+
+</style>
+
+<div id="main">
+    <main>
+        <div id="division-one">
+            <h1>Welcome to ShareNet</h1>
+            <p id="success"><%- success %></p>
+            <p id="error"><%- error %></p>
+        </div>
+    
+        <article>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, nisi.
+        </article>
+    
+        <div>
+            <% if(currentUser){ %>
+                <a id="btn" href="/content">All posts</a>
+            <%}%>
+            <% if(!currentUser){ %>
+                <a id="btn" href="/login">Login</a>
+            <%}%>
+        </div>
+    </main>
+</div>
+
+<%- include('./layout/footer')%>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareNet</title>
+</head>
+<style>
+    *{
+        color: inherit;
+        list-style-type: none;
+        text-decoration: none;
+        padding: auto;
+        margin: auto;
+    }
+
+    nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        /* width: 100%; */
+        color: #fff;
+        font-weight: bold;
+        background-color: #0051ffd7;
+    }
+
+    nav ul{
+        display: flex;
+        letter-spacing: 1px;
+        gap: 5px;
+    }
+
+    li{
+        margin-left: 10px;
+    }
+
+    footer{
+        width: 100%;
+    
+        position: fixed;
+        padding: 1rem;
+        bottom: 0;
+
+        font-weight: bold;
+
+    }
+</style>
+
+<body>
+    <nav>
+        <ul>ShareNet</ul>
+        <% if(currentUser) { %>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/content/new">Add</a></li>
+                <li><a href="/logout">LogOut</a></li>
+            </ul>
+        <% } %>
+        <% if(!currentUser) { %>
+            <ul>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+        <% } %>
+    </nav>
+    

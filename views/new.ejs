@@ -1,0 +1,132 @@
+<%- include('./layout/header')%>
+<style>
+    main{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20PX;
+    }
+    
+    form{
+        margin-top: 20px;
+        padding: 20px;
+        text-align: center;
+        background-color: rgb(185, 212, 248);
+        border-radius: 25px;
+    }
+    form div{
+        padding: 10px;
+        text-align: center;
+    }
+
+    .invalid{
+        color: red;
+
+        letter-spacing: 1px;
+    }
+
+    .success{
+        color: green;
+        letter-spacing: 1px;
+    }
+
+    button{
+        background-color: green;
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 15px;
+        letter-spacing: 1px;
+    }
+
+    #btn{
+        margin-top: 2rem;
+        padding: 10px;
+        border-radius: 15px;
+        color: #fff;
+        background-color:royalblue;
+    }
+
+</style>
+
+<main>
+    <h1>What are you thinking?</h1>
+    <form action="/content" method="POST" id="form" enctype="multipart/form-data" novalidate>
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="content[title]" required><br>
+            <small id="small"></small>
+        </div>
+        <div>
+            <input type="file" name="image" id="image">
+            <!-- <label for="image">Add Image</label>
+            <input type="text" id="image" name="content[image]" required><br>
+            <small id="small"></small> -->
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" id="description" name="content[description]" required><br>
+            <small id="small"></small>
+        </div>
+        <button>Create Post</button>
+    </form>
+
+    <div id="btn">
+        <a href="/content">Go back</a>
+    </div>
+</main>
+
+<script>
+    const form = document.getElementById('form');
+    const title = document.getElementById('title');
+    const image = document.getElementById('image');
+    const description = document.getElementById('description');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        checkValidation();
+    })
+
+
+    function checkValidation() {
+        const titleValue = title.value;
+        const imageValue = image.value;
+        const descriptionValue = description.value;
+
+        if(titleValue && imageValue && descriptionValue){
+                form.submit()
+            } else {
+                if (titleValue === ''){
+                        invalid(title, 'please add a title')
+                    } else { validated(title, 'Looks good!')}
+                if(imageValue === ''){
+                        invalid(image, 'please add an image');
+                    } else { validated(image, 'Nice image!')}
+                if(descriptionValue === ''){
+                        invalid(description, 'please add a description');
+                    } else {validated(description, 'Looks good!')}
+                }
+        }
+
+    function invalid(input, message) {
+        const formCtrl = input.parentElement;
+        const small = formCtrl.querySelector('small')
+        small.innerText = message;
+        small.classList.add('invalid') 
+        small.classList.remove('success')
+    }
+
+    function validated(input, message){
+        const formCtrl = input.parentElement;
+        const small = formCtrl.querySelector('small')
+        small.innerText = message;
+        small.classList.add('success')
+        small.classList.remove('invalid')
+    }    
+    
+</script>
+
+
+<%- include('./layout/footer')%>
+
+

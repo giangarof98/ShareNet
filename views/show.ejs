@@ -1,0 +1,229 @@
+<%- include('./layout/header')%>
+
+<style>
+    section{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #post{
+        padding: 10px;
+        background-color: rgb(185, 212, 248);
+        border: silver 2px solid;
+    }
+
+    #options{
+        display: flex;
+        margin-top: 2rem;
+    }
+
+    #likes-area{
+        display: flex;
+        margin-top: 1rem;
+    }
+
+    div #delete, #edit, #all, #comment-btn{
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 7px;
+        font-weight: bolder;
+        letter-spacing: 1px;
+    }
+    #delete{
+        background-color: red;
+    }
+    #edit, #comment-btn{
+        background-color: green;
+    }
+    #comment-btn{
+        background-color: green;
+        width: 100%;
+    }
+    #all{
+        background-color: royalblue;
+    }
+    #form{
+        margin-bottom: 3em;
+    }
+    textarea{
+        border: 2px solid #000;
+    }
+    textarea:focus{
+        outline: none;
+    }
+    .invalid{
+        color: red;
+        letter-spacing: 1px;
+    }
+
+    .success{
+        color: green;
+        letter-spacing: 1px;
+    }
+
+    #review-box{
+        margin-bottom: 10px;
+        padding: 11px;
+        border: 1px solid grey;
+    }
+    #review-comment{
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    #like{
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        background: green;
+        padding: 10px;
+        color: white;
+    }
+
+    #success{
+        margin-top: 1rem;
+        color: green;
+    }
+    #error{
+        margin-top: 1rem;
+        color: red;
+    }
+
+    aside{
+       margin-top: 1rem;
+       
+    }
+
+    @media all and (max-width:750px){
+        section{
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+        }
+
+        #post img{
+            width: 100%;
+        }
+
+        #description{
+            padding: 10px;
+        }
+
+        aside{
+            margin-top: 1rem;
+        }
+
+    }
+
+</style>
+
+<section>
+    <main>
+        <p id="success"><%- success %></p>
+        <p id="error"><%- error %></p>
+
+        <div id="post">
+            <h2>By: <%= content.owner.username %></h2>
+            <%for (let img of content.images) {%>
+                <img src="<%= img.url %>" width="400px" alt=""> <br>
+            <% } %>
+            <div id="description">
+                <h2><%= content.title %></h2>
+                <p><%= content.description %></p>
+            </div>
+        </div>
+
+        <form action="/content/<%=content._id%>/like" method="POST" id="likes-area">
+            <button id="like">Like!</button>
+            <p>People who likes: <%= content.likes.length %></p>
+        </form>
+
+        <div id="options">
+            <% if(currentUser && content.owner.equals(currentUser._id)) {%>
+            <a href="/content/<%=content._id%>/edit" id="edit" >Edit Post</a>
+            <form action="/content/<%=content._id%>?_method=DELETE" method="POST">
+                <button id="delete">Delete</button>
+            </form>
+            <% } %>
+            <div>
+                <a href="/content" id="all">All posts</a>
+            </div>
+        </div>
+
+    </main>
+
+    <% if(currentUser){ %>
+    <aside>
+        <form action="/content/<%=content._id%>/review" method="POST" id="form" class="form" novalidate>
+            <div>
+                <label for="body">Leave a review</label> <br>
+                <textarea name="review[body]" id="review" cols="30" rows="4" required></textarea><br>
+                <small></small>
+            </div>
+            <button id="comment-btn">Comment</button>
+        </form>
+
+        <% for(let review of content.reviews) {%>
+                <div id="review-box">
+                    <p><b> <%= review.owner.username %> </b></p>
+                    <div id="review-comment">
+                        <p><%= review.body %></p>
+                    </div>
+                <% if(currentUser && review.owner.equals(currentUser._id)) {%>
+                    <form action="/content/<%=content._id%>/review/<%=review._id%>?_method=DELETE" method="POST">
+                        <button id="delete">Delete</button>
+                    </form>
+                <% } %>
+                </div>
+        <% } %>
+
+    </aside>
+
+    <% } %>
+
+</section>
+
+
+<script>
+    const review = document.getElementById('review');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        checkValidation();
+    })
+
+    function checkValidation(){
+        const reviewValue = review.value;
+
+        if(reviewValue){
+                form.submit()
+            } else{
+                if(reviewValue === ''){
+                    invalid(review, 'Post comments cant be blank')
+                } else{ validated(review, 'loks good!')}
+            }
+    }
+
+
+    function invalid(input, message) {
+        const formCtrl = input.parentElement;
+        const small = formCtrl.querySelector('small')
+        small.innerText = message;
+        small.classList.add('invalid')
+        small.classList.remove('success')
+    }
+
+    function validated(input, message){
+        const formCtrl = input.parentElement;
+        const small = formCtrl.querySelector('small')
+        small.innerText = message;
+        small.classList.add('success')
+        small.classList.remove('invalid')
+    }
+</script>
+
+
+<!-- <%- include('./layout/footer')%> -->
+
+
