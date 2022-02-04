@@ -26,6 +26,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 
+const secret = process.env.SECRET || 'secret!';
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/sharenet';
 // const secret = process.env.SECRET || 'secret';
 
@@ -33,7 +34,7 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: process.env.SESSION_SECRET,
+        secret: 'secret',
     }
 })
 
@@ -44,8 +45,8 @@ store.on('error', function(e) {
 const sessionConfig = {
     store,
     name:'session',
-    mongoUrl: dbUrl,
-    secret: process.env.SESSION_SECRET,
+    // mongoUrl: dbUrl,
+    secret,
     resave: false,
     saveUninitialized:true,
     cookie: {
