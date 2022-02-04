@@ -12,12 +12,12 @@ const reviewRoutes = require('./routes/review');
 const userRoutes = require('./routes/user');
 const User = require('./models/user');
 const path = require('path');
-const session = require('express-session');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
-// const MongoDBStore = require('connect-mongo');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const config = require('./config/config');
 
 app.set('view engine', 'ejs');
@@ -26,23 +26,26 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 
-const dbUrl = process.env.DB_URL;
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/sharenet';
 // const secret = process.env.SECRET || 'secret';
 
-// const store = new MongoDBStore({
-//     url: 'mongodb://localhost:27017/sharenet',
-//     secret: 'secret',
-//     touchAfter: 24 * 60 * 60
-// })
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: process.env.SESSION_SECRET,
+    }
+})
 
-// store.on('error', function(e) {
-//     console.log('session store error', e)
-// }) 
+store.on('error', function(e) {
+    console.log('session store error', e)
+}) 
 
 const sessionConfig = {
-    // store: MongoDBStore.create(),
+    store,
     name:'session',
-    secret: 'secret',
+    mongoUrl: dbUrl,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized:true,
     cookie: {
