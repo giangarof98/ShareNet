@@ -17,6 +17,7 @@ const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
+const MongoDBStore = require('connect-mongo')(session);
 const config = require('./config/config');
 
 app.set('view engine', 'ejs');
@@ -25,7 +26,23 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/sharenet';
+const secret = process.env.SECRET || 'secret';
+
+// const dbUrl = 'mongodb://localhost:27017/sharenet';
+
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret: 'secret',
+    touchAfter: 24 * 60 * 60
+})
+
+store.on('error', function(e) {
+    console.log('session store error', e)
+})
+
 const sessionConfig = {
+    store,
     secret: 'secret',
     resave: false,
     saveUninitialized:true,
