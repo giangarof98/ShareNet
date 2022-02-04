@@ -1,11 +1,35 @@
 <%- include('../layout/header')%>
 
 <style>
-    form{
+body{
+    background-image: url('https://images.unsplash.com/photo-1643379840002-574002fbbd0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+}
+
+body::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.199);
+    z-index: -1;
+}
+
+form{
+    color: rgb(255, 255, 255);
+    background-color: rgba(187, 187, 187, 0.212);
     margin-top: 4rem;
     flex-direction: column;
-    height: 25vh;
-    width: 20%;
+    padding: 14px;
+    /* height: 35vh; */
+    width: 25%;
+    border-radius: 15px;
 }
 
 button{
@@ -26,9 +50,25 @@ input{
     margin: 8px 0;
     display: inline-block;
     box-sizing: border-box;
+    color: #000;
+    outline: none;
 }
+
 p{
     margin-bottom: 20px;
+}
+
+@media all and (min-width:300px) and (max-width: 767px){
+    form{
+        color: rgb(255, 255, 255);
+        background-color: rgba(187, 187, 187, 0.212);
+        margin-top: 8rem;
+        flex-direction: column;
+        padding: 14px;
+        /* height: 35vh; */
+        width: 70%;
+        border-radius: 15px;
+    }
 }
 </style>
 
@@ -40,7 +80,7 @@ p{
         <input type="text" id="username" name="username" required>
     </div>
     <div>
-        <label for="password">password</label>
+        <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
     </div>
     <button>Login</button>

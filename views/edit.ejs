@@ -4,14 +4,14 @@
     main{
         display: flex;
         flex-direction: column;
-        margin-top: 20PX;
+        margin-top: 7.5rem;
     }
     
     form{
         margin-top: 20px;
         padding: 20px;
         text-align: center;
-        background-color: rgb(185, 212, 248);
+        background-color: rgb(218, 216, 214);
         border-radius: 25px;
     }
     form div{
@@ -50,6 +50,7 @@
 </style>
 
 <main>
+    
     <h1>Edit Publication</h1>
     <form action="/content/<%=content._id%>?_method=PUT" method="POST" novalidate id="form" enctype="multipart/form-data">
         <div>
@@ -57,13 +58,9 @@
             <input type="text" id="title" name="content[title]" value="<%=content.title%>" required> <br>
             <small id="small"></small>
         </div>
-        <div>
-            <input type="file" name="image" id="image" multiple>
-
-            <!-- <label for="image">Image</label>
-            <input type="text" id="image" name="content[image]" value="<%=content.image%>" required> <br>
-            <small id="small"></small> -->
-        </div>
+        <!-- <div>
+            <input type="file" name="image" id="image">
+        </div> -->
         <div>
             <label for="description">Description</label>
             <input type="text" id="description" name="content[description]" value="<%=content.description%>" required> <br>

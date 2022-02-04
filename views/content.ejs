@@ -1,47 +1,38 @@
 <%- include('./layout/header')%>
 
-<style>
+<style> 
 
     main{
         display: flex;
         flex-direction: column;
-        margin-top: 20PX;
     }
 
-    #container{
-        margin-top: 30px;
-        
+    .h1{
+        margin-top: 5rem;
     }
 
-    #create{
-        color: #fff;
-        border: none;
-        border-radius: 15px;
-        padding: 10px;
-        margin-top: 10px;
-        font-weight: bolder;
-        letter-spacing: 1px;
-        background-color: green;
-    }
-
-    #ul{
-        padding: 0;  
+    .card{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-gap: 40px;
     }
     
     #li{
         margin-bottom: 20px;
-        padding: 20px;
-        border: silver 2px solid;
-        background-color: rgb(185, 212, 248);
+        background-color: cornflowerblue;
+        box-shadow: 0px 0px 20px 0 ;
+        transition: transform 0.5s;
+    }
+
+    #li:hover{
+        transform:scale(1.03);
     }
 
     #p1, #p2{
-        margin-bottom: 10px;
         font-weight: bolder;
     }
 
     #more{
-        margin-top: 10px;
         font-weight: bold;
         color: green;
     }
@@ -56,28 +47,81 @@
         text-align: center;
     }
 
+    #button{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .button{
+        display: flex;
+        flex-direction: row;
+        margin: 10px 0 10px 0;
+        gap: 40px;
+    }
+
+    #area{
+        padding: 15px;
+        background-color: cornflowerblue;
+    }
+
+    @media all and (min-width:300px) and (max-width: 767px){
+
+        main{
+            width: 90%;
+            margin-top: 3rem;
+        }
+
+        #li{
+            width: 95%;
+        }
+        img{
+            width: 100%;
+        }
+
+        .card{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+    
+    }
+
+    @media all and (min-width:768px) and (max-width: 1020px){
+        .card{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            grid-gap: 40px;
+        }
+    }
+
+
 </style>
 
 <main>
-    <h1>Welcome, <%= currentUser.username %></h1>
+    <div class="h1">
 
-    <div id="container">
-        <p id="success"><%- success %></p>
-        <p id="error"><%- error %></p>
-        <div id="ul">
-            <% for (let content of contents) {%>
+        <h1>Lastest Publications!</h1>
+    </div>
+
+    <p id="success"><%- success %></p>
+    <p id="error"><%- error %></p>
+    <div class="card">
+            <% for (let content of contents.reverse()) {%>
                 <div id="li">
-                    <h2 id="p1"><%= content.title %></h2>
-                    <h3 id="p2"><%=content.description%></h3>
-                    <p>Likes: <%= content.likes.length%></p>
                     <%for (let img of content.images) {%>
-                    <img src="<%= img.url %>" width="300px" alt=""> <br>
+                        <img src="<%= img.url %>" width="250px" alt=""> 
                     <% } %>
-                    <p id="more"><a href="/content/<%= content._id %>">See more</a></p>
+                    <div id="button">
+                            <h2 id="p1"><%= content.title %></h2>
+                            <div class="button">
+                                <p>Likes: <%= content.likes.length%></p>
+                                <p id="more"><a href="/content/<%= content._id %>">See more</a></p>
+                            </div>
+                        </div>
                 </div>
             <% }%>
+
         </div>
-    </div>
 
 </main>
 

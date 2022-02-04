@@ -4,6 +4,12 @@
     section{
         display: flex;
         flex-direction: row;
+        margin-top: 5rem;
+    }
+
+    main{
+        margin-top: -1rem;
+        position: sticky;
     }
 
     #post{
@@ -100,6 +106,7 @@
             display: flex;
             flex-direction: column;
             width: 90%;
+            margin-top: 8rem;
         }
 
         #post img{
@@ -164,7 +171,7 @@
             <button id="comment-btn">Comment</button>
         </form>
 
-        <% for(let review of content.reviews) {%>
+        <% for(let review of content.reviews.reverse()) {%>
                 <div id="review-box">
                     <p><b> <%= review.owner.username %> </b></p>
                     <div id="review-comment">
@@ -224,6 +231,6 @@
 </script>
 
 
-<!-- <%- include('./layout/footer')%> -->
+<%- include('./layout/footer')%>
 
 

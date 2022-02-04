@@ -42,8 +42,8 @@ module.exports.editForm = async(req,res) => {
 module.exports.updateContent = async(req,res)=> {
     const {id} = req.params;
     const content = await Content.findByIdAndUpdate(id,{...req.body.content})
-    const img = req.files.map(f => ({ url: f.path, filename: f.filename }));
-    content.images.push(...img)
+    // const img = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    // content.images.push(...img)
     await content.save()
     req.flash('success', 'successfully updated post!')
     res.redirect(`/content/${content._id}`)
