@@ -27,7 +27,8 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 
 const secret = process.env.SECRET || 'secret';
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/sharenet';
+const dbUrl = process.env.DB_URL;
+// || 'mongodb://localhost:27017/sharenet';
 // const secret = process.env.SECRET || 'secret';
 
 const store = MongoStore.create({
