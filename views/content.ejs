@@ -1,131 +1,25 @@
-<%- include('./layout/header')%>
-
-<style> 
-
-    main{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .h1{
-        margin-top: 5rem;
-    }
-
-    img{
-        height: 220px;
-    }
-
-    .card{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-gap: 40px;
-    }
-
-    
-    #li{
-        margin-bottom: 20px;
-        background-color: cornflowerblue;
-        box-shadow: 0px 0px 20px 0 ;
-        transition: transform 0.5s;
-    }
-
-    #li:hover{
-        transform:scale(1.03);
-    }
-
-    #p1, #p2{
-        font-weight: bolder;
-    }
-
-    #more{
-        font-weight: bold;
-        color: green;
-    }
-
-    #success{
-        color: green;
-        text-align: center;
-    }
-    #error{
-        margin-top: 1rem;
-        color: red;
-        text-align: center;
-    }
-
-    #button{
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .button{
-        display: flex;
-        flex-direction: row;
-        margin: 10px 0 10px 0;
-        gap: 40px;
-    }
-
-    #area{
-        padding: 15px;
-        background-color: cornflowerblue;
-    }
-
-    @media all and (min-width:300px) and (max-width: 767px){
-
-        main{
-            width: 90%;
-            margin-top: 3rem;
-        }
-
-        #li{
-            width: 95%;
-        }
-        img{
-            width: 100%;
-        }
-
-        .card{
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-    
-    }
-
-    @media all and (min-width:768px) and (max-width: 1020px){
-        .card{
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            grid-gap: 40px;
-        }
-    }
-
-
-</style>
+<% layout('boilerplate/boilerplate')%>
 
 <main>
     <div class="h1">
-
         <h1>Lastest Publications!</h1>
     </div>
 
-    <p id="success"><%- success %></p>
-    <p id="error"><%- error %></p>
     <div class="card">
             <% for (let content of contents.reverse()) {%>
                 <div id="li">
                     <%for (let img of content.images) {%>
                         <img src="<%= img.url %>" width="250px" alt=""> 
                     <% } %>
-                    <div id="button">
+                    <div id="card-bottom">
                             <h2 id="p1"><%= content.title %></h2>
-                            <div class="button">
+                            <div class="card-botton">
                                 <p>Likes: <%= content.likes.length%></p>
                                 <p id="more"><a href="/content/<%= content._id %>">See more</a></p>
                             </div>
                         </div>
                 </div>
-            <% }%>
-
+            <% } %>
         </div>
 
 </main>

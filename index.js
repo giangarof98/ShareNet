@@ -13,6 +13,7 @@ const userRoutes = require('./routes/user');
 const User = require('./models/user');
 const path = require('path');
 const methodOverride = require('method-override');
+const ejsMate = require('ejs-mate');
 const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
@@ -20,6 +21,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const config = require('./config/config');
 
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended:true}));
