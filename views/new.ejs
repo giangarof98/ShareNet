@@ -9,7 +9,8 @@
             <small id="small"></small>
         </div>
         <div>
-            <input type="file" name="image" id="image-input">
+            <input type="file" name="image" id="image-input"> <br>
+            <small id="small"></small>
         </div>
         <div>
             <label for="description">Description</label>
@@ -27,7 +28,7 @@
 <script>
     const form = document.getElementById('form');
     const title = document.getElementById('title');
-    const image = document.getElementById('image');
+    const image = document.getElementById('image-input');
     const description = document.getElementById('description');
 
     form.addEventListener('submit', e => {

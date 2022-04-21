@@ -23,6 +23,51 @@
     </div>
 </main>
 
+<script>
+    const form = document.getElementById('form');
+    const title = document.getElementById('title');
+    const description = document.getElementById('description');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        checkValidation();
+    })
+
+
+    function checkValidation() {
+        const titleValue = title.value;
+        const descriptionValue = description.value;
+
+        if(titleValue && descriptionValue){
+                form.submit()
+            } else {
+                if (titleValue === ''){
+                        invalid(title, 'please add a title')
+                    } else { validated(title, 'Looks good!')}
+                
+                if(descriptionValue === ''){
+                        invalid(description, 'please add a description');
+                    } else {validated(description, 'Looks good!')}
+                }
+        }
+
+    function invalid(input, message) {
+        const formCtrl = input.parentElement;
+        const small = formCtrl.querySelector('small')
+        small.innerText = message;
+        small.classList.add('invalid') 
+        small.classList.remove('success')
+    }
+
+    function validated(input, message){
+        const formCtrl = input.parentElement;
+        const small = formCtrl.querySelector('small')
+        small.innerText = message;
+        small.classList.add('success')
+        small.classList.remove('invalid')
+    }    
+    
+</script>
 
 <%- include('./layout/footer')%>
 
