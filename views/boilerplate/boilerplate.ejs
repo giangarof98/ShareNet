@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <style>
+
+    .container{
+        width: 100%;
+    }
+
     /* Home */
     .main{
         display: flex;
@@ -137,6 +142,147 @@
         gap: 40px;
     }
 
+    /* Single post */
+
+    section{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 8%;
+    }
+
+    #main-single{
+        margin-top: -1rem;
+        position: sticky;
+    }
+
+    #post{
+        padding: 10px;
+        background-color: rgb(185, 212, 248);
+        border: silver 2px solid;
+    }
+
+    #post > h2{
+        margin: 0.5rem 0 1rem 0;
+    }
+
+    #post > img{
+        width: 500px;
+        height: 350px;
+    }
+
+    #description {
+        margin: 1rem 0 0.5rem 0;
+        
+    }
+
+    #likes-area{
+        display: flex;
+        margin-top: 1rem;
+        width: 100%;
+        font-size: larger;
+    }
+
+    #likes-area > button{
+        width: 20%;
+        font-size: large;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        background: green;
+        padding: 10px;
+        letter-spacing: 3px;
+        color: white;
+    }
+
+    #likes-area > p{
+        text-align: center;
+        width: 50%;
+    }
+
+    #options{
+        display: flex;
+        margin-top: 1rem; 
+    }
+
+    #options, #delete{
+        font-size: large;
+    }
+
+    #options > #edit, #delete, #all, #comment-btn{
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 8px;
+        font-weight: bolder;
+    }
+
+    #edit, #delete, #all, #comment-btn{
+        letter-spacing: 2px;
+    }
+
+    #delete{
+        background-color: red;
+    }
+    #edit, #comment-btn{
+        background-color: green;
+    }
+
+    #comment-btn{
+        width: 100%;
+        font-size: large;
+    }
+
+    #all{
+        background-color: royalblue;
+    }
+
+    aside{
+       margin-top: 1rem;
+    }
+
+    #form{
+        margin-bottom: 3em;
+    }
+    textarea{
+        border: 2px solid #000;
+        width: 400px;
+        
+    }
+    textarea:focus{
+        outline: none;
+    }
+
+    .invalid{
+        color: red;
+        letter-spacing: 1px;
+    }
+
+    .success{
+        color: green;
+        letter-spacing: 1px;
+    }
+
+    #review-box{
+        margin-bottom: 10px;
+        padding: 11px;
+        border: 1px solid grey;
+    }
+    #review-comment{
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    #success{
+        margin-top: 1rem;
+        color: green;
+    }
+    #error{
+        margin-top: 1rem;
+        color: red;
+    }
+
 
 @media all and (min-width:300px) and (max-width: 767px){
     /* Home */
@@ -174,15 +320,64 @@
         flex-direction: column;
         width: 100%;
     }
+
+    /* SinglePost */
+
+    section{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 8rem;
+    }
+
+    #main-single{
+        width: 100%;
+    }
+
+    #post img{
+        width: 100%;
+    }
+
+    #description{
+        padding: 10px;
+    }
+
+    aside{
+        margin-top: 1rem;
+        text-align: center;
+        width: 100%;
+    }
+    
+    textarea{
+        width: 80%;
+        margin: 1rem 0 1rem 0;
+    }
+    #comment-btn{
+        width: 80%;
+    }
+
+    #review-box{
+        width: 90%;
+        text-align: left;
+    }
+
+
 }
 
 @media all and (min-width:768px) and (max-width: 1020px){
-        .card{
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            grid-gap: 40px;
-        }
+    /* All Posts     */
+    .card{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 40px;
     }
+
+    section{
+        display: flex;
+        flex-direction: column;
+        margin-top: 5rem;
+    }
+}
 
 </style>
 <body>

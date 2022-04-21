@@ -1,132 +1,7 @@
-<%- include('./layout/header')%>
-
-<style>
-    section{
-        display: flex;
-        flex-direction: row;
-        margin-top: 5rem;
-    }
-
-    main{
-        margin-top: -1rem;
-        position: sticky;
-    }
-
-    #post{
-        padding: 10px;
-        background-color: rgb(185, 212, 248);
-        border: silver 2px solid;
-    }
-
-    #options{
-        display: flex;
-        margin-top: 2rem;
-    }
-
-    #likes-area{
-        display: flex;
-        margin-top: 1rem;
-    }
-
-    div #delete, #edit, #all, #comment-btn{
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-        padding: 7px;
-        font-weight: bolder;
-        letter-spacing: 1px;
-    }
-    #delete{
-        background-color: red;
-    }
-    #edit, #comment-btn{
-        background-color: green;
-    }
-    #comment-btn{
-        background-color: green;
-        width: 100%;
-    }
-    #all{
-        background-color: royalblue;
-    }
-    #form{
-        margin-bottom: 3em;
-    }
-    textarea{
-        border: 2px solid #000;
-    }
-    textarea:focus{
-        outline: none;
-    }
-    .invalid{
-        color: red;
-        letter-spacing: 1px;
-    }
-
-    .success{
-        color: green;
-        letter-spacing: 1px;
-    }
-
-    #review-box{
-        margin-bottom: 10px;
-        padding: 11px;
-        border: 1px solid grey;
-    }
-    #review-comment{
-        width: 100%;
-        margin-bottom: 1rem;
-    }
-
-    #like{
-        cursor: pointer;
-        border: none;
-        border-radius: 10px;
-        background: green;
-        padding: 10px;
-        color: white;
-    }
-
-    #success{
-        margin-top: 1rem;
-        color: green;
-    }
-    #error{
-        margin-top: 1rem;
-        color: red;
-    }
-
-    aside{
-       margin-top: 1rem;
-       
-    }
-
-    @media all and (max-width:750px){
-        section{
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-            margin-top: 8rem;
-        }
-
-        #post img{
-            width: 100%;
-        }
-
-        #description{
-            padding: 10px;
-        }
-
-        aside{
-            margin-top: 1rem;
-        }
-
-    }
-
-</style>
+<% layout('boilerplate/boilerplate')%>
 
 <section>
-    <main>
+    <div id="main-single">
         <p id="success"><%- success %></p>
         <p id="error"><%- error %></p>
 
@@ -142,7 +17,7 @@
         </div>
 
         <form action="/content/<%=content._id%>/like" method="POST" id="likes-area">
-            <button id="like">Like!</button>
+            <button id="like">Like</button>
             <p>People who likes: <%= content.likes.length %></p>
         </form>
 
@@ -158,14 +33,14 @@
             </div>
         </div>
 
-    </main>
+    </div>
 
     <% if(currentUser){ %>
     <aside>
         <form action="/content/<%=content._id%>/review" method="POST" id="form" class="form" novalidate>
             <div>
                 <label for="body">Leave a review</label> <br>
-                <textarea name="review[body]" id="review" cols="30" rows="4" required></textarea><br>
+                <textarea name="review[body]" id="review" rows="5" required></textarea><br>
                 <small></small>
             </div>
             <button id="comment-btn">Comment</button>
