@@ -7,7 +7,6 @@
     <title>Document</title>
 </head>
 <style>
-
     .container{
         width: 100%;
     }
@@ -367,9 +366,44 @@
         letter-spacing: 1px;
     }
 
+    /* Registration */
 
+    .form-create, .form-login{
+        color: rgb(0, 0, 0);
+        background-color: rgba(133, 133, 133, 0.212);
+        margin-top: 8rem;
+        flex-direction: column;
+        padding: 14px;
+        width: 35%;
+        border-radius: 15px;
+        font-size: x-large;
+    }
 
-
+    #register-btn, #login-btn{
+        cursor: pointer;
+        width: 100%;
+        padding: 7px;
+        background-color: green;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-weight: bolder;
+        letter-spacing: 2px;
+        font-size: x-large;
+    }
+    #username, #email, #password{
+        width: 100%;
+        padding: 5px 12px;
+        margin: 8px 0;
+        display: inline-block;
+        box-sizing: border-box;
+        color:#000;
+        outline: none;
+        font-size: x-large;
+    }
+    p{
+        margin-bottom: 20px;
+    }   
 
 
 @media all and (min-width:300px) and (max-width: 767px){
@@ -448,6 +482,22 @@
         width: 90%;
         text-align: left;
     }
+
+    /* Registration */
+
+    .form-create, .form-login{
+        color: rgb(0, 0, 0);
+        background-color: rgba(133, 133, 133, 0.212);
+        margin-top: 10rem;
+        flex-direction: column;
+        padding: 14px;
+        width: 70%;
+        border-radius: 15px;
+    }
+
+    /* Login */
+
+
 
 
 }
