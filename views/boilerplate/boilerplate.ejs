@@ -206,7 +206,7 @@
         margin-top: 1rem; 
     }
 
-    #options, #delete{
+    #options, #delete, #update, #create{
         font-size: large;
     }
 
@@ -218,14 +218,15 @@
         font-weight: bolder;
     }
 
-    #edit, #delete, #all, #comment-btn{
+    #btn-goback, #create, #update, #edit, #delete, #all, #comment-btn{
         letter-spacing: 2px;
     }
 
     #delete{
         background-color: red;
     }
-    #edit, #comment-btn{
+
+    #edit, #comment-btn, #update, #create{
         background-color: green;
     }
 
@@ -234,7 +235,7 @@
         font-size: large;
     }
 
-    #all{
+    #all, #btn-goback{
         background-color: royalblue;
     }
 
@@ -282,6 +283,93 @@
         margin-top: 1rem;
         color: red;
     }
+
+    #update{
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 8px;
+        margin-top: 2px;
+        font-weight: bolder;
+    }
+
+    /* Edit post */
+
+    .main-edit{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 7.5rem;
+    }
+
+    #form{
+        margin-top: 20px;
+        padding: 20px;
+        text-align: center;
+        background-color: rgb(218, 216, 214);
+        border-radius: 25px;
+    }
+
+    #form .edit{
+        padding: 10px;
+        text-align: center;
+        font-size: larger;
+    }
+
+    .edit > label{
+        font-size: larger;
+    }
+
+    #title, #description{
+        font-size: large;
+        padding: 10px;
+    }
+
+    #btn-goback{
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 8px;
+        font-weight: bolder;
+        font-size: larger;
+    }
+
+    /* New post */
+
+    #newPost{
+        display: flex;
+        flex-direction: column;
+        margin-top: 7rem;
+    }
+
+    form #image-input{
+        font-size: large;
+        margin-top: 1rem;
+    }
+
+    #create{
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 8px;
+        font-weight: bolder;
+        margin-top: 1rem;
+    }
+
+    .invalid{
+        color: red;
+
+        letter-spacing: 1px;
+    }
+
+    .success{
+        color: green;
+        letter-spacing: 1px;
+    }
+
+
+
+
 
 
 @media all and (min-width:300px) and (max-width: 767px){
@@ -384,7 +472,7 @@
 
     <main class="container">
         <%- include('../layout/header') %>
-       
+        <%- include('../partials/flash')%>
         <%- body %>
     </main>
 

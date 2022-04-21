@@ -1,81 +1,25 @@
-<%- include('./layout/header')%>
-<style>
-    main{
-        display: flex;
-        flex-direction: column;
-        margin-top: 7rem;
-    }
+<% layout('boilerplate/boilerplate')%>
 
-    h1{
-        text-align: center;
-    }
-    
-    form{
-        margin-top: 20px;
-        padding: 20px;
-        text-align: center;
-        background-color: rgb(218, 216, 214);
-        border-radius: 25px;
-    }
-    form div{
-        padding: 10px;
-        text-align: center;
-    }
-
-    .invalid{
-        color: red;
-
-        letter-spacing: 1px;
-    }
-
-    .success{
-        color: green;
-        letter-spacing: 1px;
-    }
-
-    button{
-        background-color: green;
-        color: #fff;
-        padding: 10px;
-        margin-top: 10px;
-        border: none;
-        border-radius: 15px;
-        letter-spacing: 1px;
-    }
-
-    #btn{
-        margin-top: 2rem;
-        padding: 10px;
-        border-radius: 15px;
-        color: #fff;
-        background-color:royalblue;
-    }
-
-</style>
-
-<main>
+<main id="newPost">
     <h1>What are you thinking?</h1>
     <form action="/content" method="POST" id="form" enctype="multipart/form-data" novalidate>
         <div>
-            <label for="title">Title</label>
+            <label for="title" id="title-new">Title</label>
             <input type="text" id="title" name="content[title]" required><br>
             <small id="small"></small>
         </div>
         <div>
-            <input type="file" name="image" id="image">
-            <!-- <label for="image">Add Image</label>
-            <input type="text" id="image" name="content[image]" required><br>
-            <small id="small"></small> -->
+            <input type="file" name="image" id="image-input">
         </div>
         <div>
             <label for="description">Description</label>
             <input type="text" id="description" name="content[description]" required><br>
             <small id="small"></small>
         </div>
-        <button>Create Post</button>
+        <button id="create">Create Post</button>
     </form>
 
-    <div id="btn">
+    <div id="btn-goback">
         <a href="/content">Go back</a>
     </div>
 </main>
